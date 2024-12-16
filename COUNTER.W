@@ -1,0 +1,26 @@
+EDEC
+
+LOOP:
+    CLRS BLACK
+    INCR XY
+
+    SAVE XY
+    TRGT Y; CPTO W
+    TRGT W; ADDI '0'
+    SETX 0
+    SETY 0
+    PRNT
+    RSTR XY
+
+    SAVE XY
+    TRGT X; CPTO W
+    TRGT W; ADDI '0'
+    SETX 1
+    SETY 0
+    PRNT
+    RSTR XY
+
+    GOTO LOOP
+
+BLACK:
+    DATA $000000
