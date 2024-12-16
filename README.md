@@ -86,3 +86,23 @@ To compile from source and run the moon example:
 ```
 
 ![moon](moon.png)
+
+What's special about the encoding of the instructions is that all mnemonics are 4 bytes and the encoding is the same: the same 4 bytes used for the mnemonic.
+This is particularly useful for writing self-modifying code. You can look at a hexdump of an assembled program and see the instructions because they're ASCII:
+```
+$ zig-out/bin/W CHICKEN.W
+$ hexdump -C CHICKEN
+00000000  43 4c 52 53 b7 01 00 00  53 43 4c 52 a7 01 00 00  |CLRS....SCLR....|
+00000010  44 52 41 57 67 01 00 00  49 4e 43 52 58 53 43 4c  |DRAWg...INCRXSCL|
+00000020  52 ab 01 00 00 44 52 41  57 67 01 00 00 49 4e 43  |R....DRAWg...INC|
+00000030  52 58 53 43 4c 52 ab 01  00 00 44 52 41 57 67 01  |RXSCLR....DRAWg.|
+00000040  00 00 49 4e 43 52 58 53  43 4c 52 a7 01 00 00 44  |..INCRXSCLR....D|
+00000050  52 41 57 67 01 00 00 53  45 54 58 00 00 00 00 49  |RAWg...SETX....I|
+00000060  4e 43 52 59 53 43 4c 52  b3 01 00 00 44 52 41 57  |NCRYSCLR....DRAW|
+00000070  67 01 00 00 49 4e 43 52  58 53 43 4c 52 b3 01 00  |g...INCRXSCLR...|
+00000080  00 44 52 41 57 67 01 00  00 49 4e 43 52 58 53 43  |.DRAWg...INCRXSC|
+00000090  4c 52 b3 01 00 00 44 52  41 57 67 01 00 00 49 4e  |LR....DRAWg...IN|
+000000a0  43 52 58 53 43 4c 52 b3  01 00 00 44 52 41 57 67  |CRXSCLR....DRAWg|
+000000b0  01 00 00 53 45 54 58 00  00 00 00 49 4e 43 52 59  |...SETX....INCRY|
+000000c0  53 43 4c 52 ab 01 00 00  44 52 41 57 67 01 00 00  |SCLR....DRAWg...|
+```
